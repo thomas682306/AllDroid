@@ -3,6 +3,7 @@ package com.example.alldroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,5 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //why is this is not always working
+
+
+        Log.d("Thomas","Im finally getting the hang of this");
+
+
     }
 }
