@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
         // added a new comment on this file
 
+        //added one more new comment to this file
+        //this is actually nice
+        //wtf
+
+
+        //this is a new line
 
     }
 }
