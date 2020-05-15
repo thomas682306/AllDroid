@@ -18,5 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("afro","Im finally getting the hang of this");
 
 
+        // added a new comment on this file
+
+
     }
 }
