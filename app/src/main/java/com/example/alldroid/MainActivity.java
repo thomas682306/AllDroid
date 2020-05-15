@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         //why is this is not always working
 
 
-        Log.d("Thomas","Im finally getting the hang of this");
+        Log.d("afro","Im finally getting the hang of this");
 
 
     }
