@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/quiz_flow"
@@ -7,7 +8,7 @@
 
     <fragment
         android:id="@+id/quizStart"
-        android:name="com.example.alldroid.QuizStart"
+        android:name="com.example.alldroid.QuizPackage.QuizStart"
         android:label="fragment_quiz_start"
         tools:layout="@layout/fragment_quiz_start" >
         <action
@@ -16,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/quizEndFragment"
-        android:name="com.example.alldroid.QuizEndFragment"
+        android:name="com.example.alldroid.QuizPackage.QuizEndFragment"
         android:label="fragment_quiz_end"
         tools:layout="@layout/fragment_quiz_end" />
     <fragment
