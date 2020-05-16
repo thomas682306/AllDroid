@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "866638104324",
+    "firebase_url": "https://alldroid.firebaseio.com",
+    "project_id": "alldroid",
+    "storage_bucket": "alldroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866638104324:android:398d1b805ec9a077dfb251",
+        "android_client_info": {
+          "package_name": "com.example.alldroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866638104324-j42qj6cr0jkv6vjfddg8jr347f78s6ke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa2j8L7KvIPseKp5ZFKIcNY314fHKlGkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866638104324-j42qj6cr0jkv6vjfddg8jr347f78s6ke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

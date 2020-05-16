@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_quiz_end" />
     <fragment
         android:id="@+id/mainQuizFragment"
-        android:name="com.example.alldroid.MainQuizFragment"
+        android:name="com.example.alldroid.QuizPackage.MainQuizFragment"
         android:label="fragment_main_quiz"
         tools:layout="@layout/fragment_main_quiz" >
         <action
