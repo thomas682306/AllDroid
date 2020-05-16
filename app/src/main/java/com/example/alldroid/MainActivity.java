@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("afro","Im finally getting the hang of this");
 
         Toast.makeText(this, "Im still trying (sad emoji)", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Im still trying (sad emoji)", Toast.LENGTH_SHORT).show()
+        
 
 
     }
