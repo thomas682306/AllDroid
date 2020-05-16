@@ -12,15 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //why is this is not always working
-
-
-        Log.d("afro","Im finally getting the hang of this");
-
-        Toast.makeText(this, "I got it(Happy emoji)", Toast.LENGTH_SHORT).show();
-
-        
-
 
     }
 }

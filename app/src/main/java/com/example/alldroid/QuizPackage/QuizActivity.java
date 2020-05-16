@@ -1,8 +1,10 @@
-package com.example.alldroid;
+package com.example.alldroid.QuizPackage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.alldroid.R;
 
 public class QuizActivity extends AppCompatActivity {
 
