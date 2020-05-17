@@ -15,11 +15,13 @@
             android:id="@+id/action_quizStart_to_mainQuizFragment"
             app:destination="@id/mainQuizFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/quizEndFragment"
         android:name="com.example.alldroid.QuizPackage.QuizEndFragment"
         android:label="fragment_quiz_end"
         tools:layout="@layout/fragment_quiz_end" />
+
     <fragment
         android:id="@+id/mainQuizFragment"
         android:name="com.example.alldroid.QuizPackage.MainQuizFragment"
@@ -29,4 +31,5 @@
             android:id="@+id/action_mainQuizFragment_to_quizEndFragment"
             app:destination="@id/quizEndFragment" />
     </fragment>
+
 </navigation>

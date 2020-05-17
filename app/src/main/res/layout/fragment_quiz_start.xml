@@ -36,10 +36,10 @@
         app:lottie_loop="true" />
 
     <Button
-        android:id="@+id/textButton"
+        android:id="@+id/ready_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready?"
+        android:text="@string/ready"
         style="?attr/materialButtonOutlinedStyle"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
