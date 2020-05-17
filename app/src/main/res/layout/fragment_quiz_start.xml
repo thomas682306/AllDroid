@@ -48,3 +48,4 @@
         app:layout_constraintTop_toBottomOf="@+id/lottie_quiz_gif" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

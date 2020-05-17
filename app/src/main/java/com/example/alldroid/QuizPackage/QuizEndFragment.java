@@ -1,13 +1,16 @@
 package com.example.alldroid.QuizPackage;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
 
 
@@ -51,10 +54,20 @@ public class QuizEndFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+
+                //need to add a dialog to handle back clicks
+
+                Intent intent= new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        };
+
     }
 
     @Override

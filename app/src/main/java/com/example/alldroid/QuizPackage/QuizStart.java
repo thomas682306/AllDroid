@@ -52,6 +52,7 @@ public class QuizStart extends Fragment {
             public void onClick(View v) {
             navController.navigate(R.id.action_quizStart_to_mainQuizFragment);
 
+
             }
         });
     }

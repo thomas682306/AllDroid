@@ -7,12 +7,13 @@
     tools:context=".QuizPackage.MainQuizFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/question_number_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:gravity="center"
         android:text="1"
+
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,29 +24,31 @@
 
 
     <TextView
+        android:id="@+id/timer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar2"
+        app:layout_constraintStart_toStartOf="@+id/progressBar2"
+        app:layout_constraintTop_toTopOf="@+id/progressBar2"
+        app:layout_constraintVertical_bias="0.49" />
 
     <ProgressBar
+        android:id="@+id/progressBar2"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/circle_progress"
         android:progress="10"
         android:progressDrawable="@drawable/custom_progress_bar"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/question_number_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.862"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/question_number_tv"
+        app:layout_constraintTop_toTopOf="@+id/question_number_tv"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -61,97 +64,77 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/question_number_tv"
         app:layout_constraintVertical_bias="0.037" />
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialTextView"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="Messages"
-        android:textSize="23sp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_tv"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintVertical_bias="0.04000002">
 
+        <Button
+            android:id="@+id/option_A"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:minHeight="80dp"
+            android:text="Button 1" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <Button
+            android:id="@+id/option_B"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:minHeight="80dp"
+            android:text="Button 2" />
+
+        <Button
+            android:id="@+id/option_C"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:minHeight="80dp"
+            android:text="Button 3" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+    .
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dialog_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="60dp"
+        android:textSize="20sp"
         android:gravity="center"
-        android:minHeight="80dp"
-        android:text="Broadcasts"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:minHeight="80dp"
-        android:text="I don't Know"
-        android:textAllCaps="false"
-        android:textSize="23sp"
+        android:visibility="invisible"
+        android:text="Whoops thats the wrong answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:minHeight="40dp"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton2"
-        app:layout_constraintVertical_bias="0.188" />
+        app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+        app:layout_constraintVertical_bias="0.174" />
 
     <com.google.android.material.button.MaterialButton
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="100dp"
+        android:id="@+id/next_btn"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:minHeight="50dp"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/materialButton2"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView2"
-        app:layout_constraintVertical_bias="0.233" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_text"
+        app:layout_constraintVertical_bias="0.59" />
 </androidx.constraintlayout.widget.ConstraintLayout>
