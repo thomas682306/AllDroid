@@ -1,8 +1,10 @@
 package com.example.alldroid.QuizPackage;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,9 +48,23 @@ public class QuizStart extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         //instance of firebase repository
         firebaseRepository= new FirebaseRepository();
-        super.onCreate(savedInstanceState);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+
+                //need to add a dialog to handle back clicks
+                Intent intent= new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
 
@@ -103,5 +120,6 @@ public class QuizStart extends Fragment {
             }
         });
     }
+
 
 }
