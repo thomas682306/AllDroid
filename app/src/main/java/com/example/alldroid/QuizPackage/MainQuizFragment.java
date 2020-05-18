@@ -40,7 +40,7 @@ public class MainQuizFragment extends Fragment  {
 
     ProgressBar progressBar;
     CountDownTimer mTimer;
-    int mId, counter=0;
+    int mId=0, counter=0;
 
     ArrayList<QuestionsModel>mModel;
     NavController navController;
@@ -107,6 +107,8 @@ public class MainQuizFragment extends Fragment  {
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
                 if(toggleGroup.getCheckedButtonId()!=-1)
                 mId=toggleGroup.getCheckedButtonId();
+
+
             }
         });
 
@@ -152,24 +154,28 @@ public class MainQuizFragment extends Fragment  {
     }
 
     void checkAnswer(View view,@NonNull int id){
+        if(id!=0) {
+            MaterialButton materialButton = view.findViewById(id);
+            String option = materialButton.getText().toString().trim();
+            String answer = mModel.get(counter).getAnswer();
 
-        Log.d("tag",String.valueOf(mId) );
-        MaterialButton materialButton= view.findViewById(id);
-        String option=materialButton.getText().toString().trim();
-        String answer=mModel.get(counter).getAnswer();
+            if (answer.equalsIgnoreCase(option)) {
+                dialog_text.setVisibility(View.VISIBLE);
+                dialog_text.setText("Your Answer is Correct");
+                CORRECT_ANSWER_COUNT++;
 
-        if(answer.equalsIgnoreCase(option)){
-            dialog_text.setVisibility(View.VISIBLE);
-            dialog_text.setText("Your Answer is Correct");
-            CORRECT_ANSWER_COUNT++;
+            } else {
+                dialog_text.setVisibility(View.VISIBLE);
+                dialog_text.setText("Whoops Wrong answer");
+                WRONG_ANSWER_COUNT++;
 
+            }
         }
 
-        else {
+        else{
             dialog_text.setVisibility(View.VISIBLE);
-            dialog_text.setText("Whoops Wrong answer");
+            dialog_text.setText("Nothing Seletected");
             WRONG_ANSWER_COUNT++;
-
         }
 
     }
@@ -208,5 +214,11 @@ public class MainQuizFragment extends Fragment  {
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
     }
 }
