@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDeepLinkBuilder;
 import androidx.navigation.Navigation;
@@ -27,21 +28,22 @@ import com.example.alldroid.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainQuizFragment extends Fragment  {
     MaterialButtonToggleGroup toggleGroup;
-    MaterialButton option_A;
-    MaterialButton option_B;
-    MaterialButton option_C;
-    MaterialButton next_btn;
-    TextView timer_tv;
+    MaterialButton option_A,option_B,option_C,next_btn;
+    private static final String TAG = "MainQuizFragment";
+    TextView timer_tv,question_number_tv,question_tv,dialog_text;
+    static int CORRECT_ANSWER_COUNT=0,WRONG_ANSWER_COUNT=0;
+
     ProgressBar progressBar;
     CountDownTimer mTimer;
-    int mId;
-    int counter=1;
+    int mId, counter=0;
 
-
-
-    private NavController navController;
+    ArrayList<QuestionsModel>mModel;
+    NavController navController;
 
     public MainQuizFragment() {
 
@@ -58,51 +60,129 @@ public class MainQuizFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        //find view by ids
         toggleGroup=view.findViewById(R.id.toggleButton);
         option_A=view.findViewById(R.id.option_A);
         option_B=view.findViewById(R.id.option_B);
         option_C=view.findViewById(R.id.option_C);
         timer_tv=view.findViewById(R.id.timer_tv);
+        dialog_text=view.findViewById(R.id.dialog_text);
         progressBar=view.findViewById(R.id.progressBar2);
         next_btn=view.findViewById(R.id.next_btn);
+        question_number_tv=view.findViewById(R.id.question_number_tv);
+        question_tv=view.findViewById(R.id.question_tv);
         navController = Navigation.findNavController(view);
 
 
-        mTimer=new CountDownTimer(10000, 150) {
+        //assign array to serialized array
+        mModel= (ArrayList<QuestionsModel>) getArguments().getSerializable("key");
+
+
+        mTimer=new CountDownTimer(5000, 200) {
             public void onTick(long millisUntilFinished) {
-                enableButtons();
+
                 int time=(int) (millisUntilFinished/1000);
                 timer_tv.setText(String.valueOf(time));
                 Long percent=millisUntilFinished/100;
                 progressBar.setProgress(percent.intValue());
 
+
             }
+
             public void onFinish() {
-                disableButtons();
+                //disablebuttons
+
+                checkAnswer(view,mId);
+                disableButton();
+                //enable nextbutton
+                //check write answer and give toast
+                //increment respective fields
+                counter++;
+
             }
         };
-
-        mTimer.start();
-
         toggleGroup.setSingleSelection(true);
         toggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                mId=checkedId;
+                if(toggleGroup.getCheckedButtonId()!=-1)
+                mId=toggleGroup.getCheckedButtonId();
             }
         });
+
+        setQuestions();
+        mTimer.start();
+
 
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextQuestion(counter);
+                if(counter<mModel.size()) {
+                    dialog_text.setVisibility(View.INVISIBLE);
+                    setQuestions();
+                    mTimer.start();
+                }
+                else{
+                    next_btn.setText("View Result");
+                    next_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("correct_answer_Count", CORRECT_ANSWER_COUNT);
+                            bundle.putInt("wrong_answer_count", WRONG_ANSWER_COUNT);
+                            bundle.putInt("total_answer_count", mModel.size());
+
+                            navController.navigate(R.id.action_mainQuizFragment_to_quizEndFragment,bundle);
+                        }
+                    });
+                }
             }
         });
 
+
+
     }
 
-    void disableButtons(){
+    void setQuestions(){
+        enableButton();
+        question_tv.setText(mModel.get(counter).getQuestion());
+        option_A.setText(mModel.get(counter).getOptionA());
+        option_B.setText(mModel.get(counter).getOptionB());
+        option_C.setText(mModel.get(counter).getOptionC());
+    }
+
+    void checkAnswer(View view,@NonNull int id){
+
+        Log.d("tag",String.valueOf(mId) );
+        MaterialButton materialButton= view.findViewById(id);
+        String option=materialButton.getText().toString().trim();
+        String answer=mModel.get(counter).getAnswer();
+
+        if(answer.equalsIgnoreCase(option)){
+            dialog_text.setVisibility(View.VISIBLE);
+            dialog_text.setText("Your Answer is Correct");
+            CORRECT_ANSWER_COUNT++;
+
+        }
+
+        else {
+            dialog_text.setVisibility(View.VISIBLE);
+            dialog_text.setText("Whoops Wrong answer");
+            WRONG_ANSWER_COUNT++;
+
+        }
+
+    }
+
+    void enableButton(){
+        option_A.setEnabled(true);
+        option_B.setEnabled(true);
+        option_C.setEnabled(true);
+        next_btn.setVisibility(View.GONE);
+        next_btn.setEnabled(false);
+
+    }
+    void disableButton(){
         option_A.setEnabled(false);
         option_B.setEnabled(false);
         option_C.setEnabled(false);
@@ -110,32 +190,7 @@ public class MainQuizFragment extends Fragment  {
         next_btn.setEnabled(true);
     }
 
-    void enableButtons(){
-        option_A.setEnabled(true);
-        option_B.setEnabled(true);
-        option_C.setEnabled(true);
-        next_btn.setVisibility(View.INVISIBLE);
-        next_btn.setEnabled(false);
-    }
 
-    void nextQuestion(int counter) {
-        while (counter < 4) {
-            counter++;
-            mTimer.start();
-
-        }
-        next_btn.setText("View Result");
-        next_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_mainQuizFragment_to_quizEndFragment);
-
-            }
-        });
-
-
-
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,7 +201,6 @@ public class MainQuizFragment extends Fragment  {
                 // Handle the back button event
 
                 //need to add a dialog to handle back clicks
-
                 Intent intent= new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();

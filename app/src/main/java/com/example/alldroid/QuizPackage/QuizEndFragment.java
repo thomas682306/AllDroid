@@ -2,53 +2,30 @@ package com.example.alldroid.QuizPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QuizEndFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class QuizEndFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    MaterialButton exit_btn;
+    MaterialTextView anwered_correct_tv,anwered_wrong_tv,percent_tv;
+    ProgressBar progressBar;
     public QuizEndFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment QuizEndFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static QuizEndFragment newInstance(String param1, String param2) {
-        QuizEndFragment fragment = new QuizEndFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -60,13 +37,13 @@ public class QuizEndFragment extends Fragment {
                 // Handle the back button event
 
                 //need to add a dialog to handle back clicks
-
                 Intent intent= new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
 
             }
         };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
 
@@ -75,5 +52,47 @@ public class QuizEndFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_quiz_end, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        exit_btn=view.findViewById(R.id.exit_btn);
+        anwered_correct_tv=view.findViewById(R.id.answered_correct);
+        anwered_wrong_tv=view.findViewById(R.id.answered_wrong);
+        progressBar=view.findViewById(R.id.progressBar);
+        percent_tv=view.findViewById(R.id.percent);
+
+        double correct=getArguments().getInt("correct_answer_Count");
+        double wrong=getArguments().getInt("wrong_answer_count");
+        double total=getArguments().getInt("total_answer_count");
+
+        Log.d("tag",String.valueOf(correct));
+        Log.d("tag",String.valueOf(wrong));
+        Log.d("tag",String.valueOf(total));
+
+        double progressvalue= correct/total*100;
+
+
+        Log.d("tag",String.valueOf(progressvalue));
+
+
+        Toast.makeText(getActivity().getApplicationContext(),String.valueOf(progressvalue),Toast.LENGTH_SHORT).show();
+        progressBar.setProgress((int) progressvalue);
+        percent_tv.setText(String.valueOf(progressvalue));
+
+        anwered_wrong_tv.setText(wrong+" Questions were answered incorrectly");
+        anwered_correct_tv.setText(correct+" Questions were answered correctly");
+
+
+        exit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
     }
 }
