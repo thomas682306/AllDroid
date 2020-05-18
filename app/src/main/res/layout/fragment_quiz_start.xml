@@ -47,4 +47,15 @@
         app:layout_constraintStart_toStartOf="@+id/lottie_quiz_gif"
         app:layout_constraintTop_toBottomOf="@+id/lottie_quiz_gif" />
 
+    <ProgressBar
+        android:id="@+id/load_question_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lottie_quiz_gif"
+        app:layout_constraintStart_toStartOf="@+id/lottie_quiz_gif"
+        app:layout_constraintTop_toBottomOf="@+id/lottie_quiz_gif" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

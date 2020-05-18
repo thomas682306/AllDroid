@@ -23,10 +23,13 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
         android:layout_width="300dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:layout_height="200dp"
         android:layout_margin="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        app:lottie_fileName="winner.json"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +42,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:progress="60"
+        android:background="@drawable/circle_progress"
         android:progressDrawable="@drawable/custom_progress_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
@@ -49,6 +52,7 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10%"
@@ -60,7 +64,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView4"
+        android:id="@+id/answered_correct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -76,7 +80,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView5"
+        android:id="@+id/answered_wrong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -86,30 +90,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView4"
+        app:layout_constraintTop_toBottomOf="@+id/answered_correct"
         app:layout_constraintVertical_bias="0.025" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:minHeight="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView5"
-        app:layout_constraintVertical_bias="0.128" />
 
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/exit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="exit"
+        android:text="@string/exit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/materialTextView6"
-        app:layout_constraintStart_toStartOf="@+id/materialTextView6"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView6" />
+        app:layout_constraintEnd_toEndOf="@+id/answered_wrong"
+        app:layout_constraintStart_toStartOf="@+id/answered_wrong"
+        app:layout_constraintTop_toBottomOf="@+id/answered_wrong" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
