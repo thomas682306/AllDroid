@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
 import com.google.android.material.button.MaterialButton;
@@ -24,6 +25,8 @@ public class QuizEndFragment extends Fragment {
     MaterialButton exit_btn;
     MaterialTextView anwered_correct_tv,anwered_wrong_tv,percent_tv;
     ProgressBar progressBar;
+    LottieAnimationView lottieAnimationView;
+
     public QuizEndFragment() {
         // Required empty public constructor
     }
@@ -63,6 +66,7 @@ public class QuizEndFragment extends Fragment {
         anwered_wrong_tv=view.findViewById(R.id.answered_wrong);
         progressBar=view.findViewById(R.id.progressBar);
         percent_tv=view.findViewById(R.id.percent);
+        lottieAnimationView=view.findViewById(R.id.lottieAnimationView);
 
         double correct=getArguments().getInt("correct_answer_Count");
         double wrong=getArguments().getInt("wrong_answer_count");
@@ -80,8 +84,19 @@ public class QuizEndFragment extends Fragment {
 
         Toast.makeText(getActivity().getApplicationContext(),String.valueOf(progressvalue),Toast.LENGTH_SHORT).show();
         progressBar.setProgress((int) progressvalue);
-        percent_tv.setText(String.valueOf(progressvalue));
+        percent_tv.setText((progressvalue +"%"));
 
+        if(progressvalue<40){
+            lottieAnimationView.setAnimation("something_wrong.json");
+        }
+        else if(progressvalue>40&& progressvalue<80){
+            lottieAnimationView.setAnimation("thumbs_up.json");
+
+        }
+        else {
+            lottieAnimationView.setAnimation("crown.json");
+
+        }
         anwered_wrong_tv.setText(wrong+" Questions were answered incorrectly");
         anwered_correct_tv.setText(correct+" Questions were answered correctly");
 
