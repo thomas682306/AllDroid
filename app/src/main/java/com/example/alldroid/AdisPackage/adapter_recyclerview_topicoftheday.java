@@ -39,6 +39,9 @@ public class adapter_recyclerview_topicoftheday extends RecyclerView.Adapter<ada
     public void onBindViewHolder(@NonNull topicoftheday_viewholder holder, int position) {
         holder.site.setText(mdata.get(position).getSitename());
         holder.link.setText(mdata.get(position).getLink());
+        holder.link.setLinksClickable(true);
+
+
     }
 
     @Override
