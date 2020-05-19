@@ -1,7 +1,6 @@
-package com.example.alldroid.Adapters;
+package com.example.alldroid.AdisPackage;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alldroid.R;
-import com.example.alldroid.entityitems.siteandlink;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class adapter_recyclerview_topicoftheday extends RecyclerView.Adapter<adapter_recyclerview_topicoftheday.topicoftheday_viewholder>  {
 
 
-    ArrayList<siteandlink> mdata;
+    List<siteandlink> mdata;
     Context context;
+
+    public adapter_recyclerview_topicoftheday() {
+    }
 
     public adapter_recyclerview_topicoftheday(ArrayList<siteandlink> mdata, Context context) {
         this.mdata = mdata;
@@ -42,6 +44,11 @@ public class adapter_recyclerview_topicoftheday extends RecyclerView.Adapter<ada
     @Override
     public int getItemCount() {
         return mdata.size();
+    }
+
+    public void setMdata(List<siteandlink> mdata) {
+        this.mdata = mdata;
+        notifyDataSetChanged();
     }
 
     public static class topicoftheday_viewholder extends RecyclerView.ViewHolder {
