@@ -1,5 +1,6 @@
 package com.example.alldroid.QuizPackage;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -28,6 +29,7 @@ import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class MainQuizFragment extends Fragment  {
     MaterialButtonToggleGroup toggleGroup;
     MaterialButton option_A,option_B,option_C,next_btn;
     private static final String TAG = "MainQuizFragment";
-    TextView timer_tv,question_number_tv,question_tv,dialog_text;
+    TextView timer_tv,question_number_tv,question_tv;
     static int CORRECT_ANSWER_COUNT,WRONG_ANSWER_COUNT;
 
     ProgressBar progressBar;
@@ -215,18 +217,38 @@ public class MainQuizFragment extends Fragment  {
                 // Handle the back button event
 
                 //need to add a dialog to handle back clicks
-                Intent intent= new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+
+                final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getActivity());
+                builder.setMessage("Are you sure, you want to exit the quiz ?")
+                        .setTitle("Leave Quiz ")
+                        .setIcon(R.drawable.ic_exit_to_app_black_24dp)
+                        .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                leaveFragment();
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder.show();
+
+
+
 
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+
+    void leaveFragment(){
+        Intent intent= new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
 
     }
 }
