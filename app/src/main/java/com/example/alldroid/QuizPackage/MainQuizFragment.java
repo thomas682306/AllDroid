@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.alldroid.MainActivity;
 import com.example.alldroid.R;
 import com.google.android.material.button.MaterialButton;
@@ -36,14 +37,15 @@ public class MainQuizFragment extends Fragment  {
     MaterialButton option_A,option_B,option_C,next_btn;
     private static final String TAG = "MainQuizFragment";
     TextView timer_tv,question_number_tv,question_tv,dialog_text;
-    static int CORRECT_ANSWER_COUNT=0,WRONG_ANSWER_COUNT=0;
+    static int CORRECT_ANSWER_COUNT,WRONG_ANSWER_COUNT;
 
     ProgressBar progressBar;
     CountDownTimer mTimer;
-    int mId=0, counter=0;
+    int mId=0, counter;
 
     ArrayList<QuestionsModel>mModel;
     NavController navController;
+    private LottieAnimationView lottieView;
 
     public MainQuizFragment() {
 
@@ -61,18 +63,21 @@ public class MainQuizFragment extends Fragment  {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //find view by ids
+        CORRECT_ANSWER_COUNT=0;
+        WRONG_ANSWER_COUNT=0;
+        counter=0;
+
         toggleGroup=view.findViewById(R.id.toggleButton);
         option_A=view.findViewById(R.id.option_A);
         option_B=view.findViewById(R.id.option_B);
         option_C=view.findViewById(R.id.option_C);
         timer_tv=view.findViewById(R.id.timer_tv);
-        dialog_text=view.findViewById(R.id.dialog_text);
+        lottieView=view.findViewById(R.id.lottieCorrect_or_wrong);
         progressBar=view.findViewById(R.id.progressBar2);
         next_btn=view.findViewById(R.id.next_btn);
         question_number_tv=view.findViewById(R.id.question_number_tv);
         question_tv=view.findViewById(R.id.question_tv);
         navController = Navigation.findNavController(view);
-
 
         //assign array to serialized array
         mModel= (ArrayList<QuestionsModel>) getArguments().getSerializable("key");
@@ -105,9 +110,10 @@ public class MainQuizFragment extends Fragment  {
         toggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                if(toggleGroup.getCheckedButtonId()!=-1)
-                mId=toggleGroup.getCheckedButtonId();
-
+                mId=0;
+                if(toggleGroup.getCheckedButtonId()!=-1) {
+                    mId = toggleGroup.getCheckedButtonId();
+                }
 
             }
         });
@@ -120,7 +126,6 @@ public class MainQuizFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(counter<mModel.size()) {
-                    dialog_text.setVisibility(View.INVISIBLE);
                     setQuestions();
                     mTimer.start();
                 }
@@ -147,6 +152,7 @@ public class MainQuizFragment extends Fragment  {
 
     void setQuestions(){
         enableButton();
+        question_number_tv.setText(String.valueOf(counter+1));
         question_tv.setText(mModel.get(counter).getQuestion());
         option_A.setText(mModel.get(counter).getOptionA());
         option_B.setText(mModel.get(counter).getOptionB());
@@ -160,21 +166,22 @@ public class MainQuizFragment extends Fragment  {
             String answer = mModel.get(counter).getAnswer();
 
             if (answer.equalsIgnoreCase(option)) {
-                dialog_text.setVisibility(View.VISIBLE);
-                dialog_text.setText("Your Answer is Correct");
+                lottieView.setVisibility(View.VISIBLE);
+                lottieView.setAnimation("tick.json");
+                lottieView.playAnimation();
                 CORRECT_ANSWER_COUNT++;
 
             } else {
-                dialog_text.setVisibility(View.VISIBLE);
-                dialog_text.setText("Whoops Wrong answer");
+                lottieView.setVisibility(View.VISIBLE);
+                lottieView.setAnimation("wrong_three.json");
+                lottieView.playAnimation();
                 WRONG_ANSWER_COUNT++;
 
             }
         }
 
         else{
-            dialog_text.setVisibility(View.VISIBLE);
-            dialog_text.setText("Nothing Seletected");
+
             WRONG_ANSWER_COUNT++;
         }
 
@@ -186,6 +193,7 @@ public class MainQuizFragment extends Fragment  {
         option_C.setEnabled(true);
         next_btn.setVisibility(View.GONE);
         next_btn.setEnabled(false);
+        lottieView.setVisibility(View.INVISIBLE);
 
     }
     void disableButton(){
