@@ -3,39 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_flow"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/roadMapFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.alldroid.HomeFragment"
+        android:name="com.example.alldroid.AdisPackage.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_topicOfDayDetails"
             app:destination="@id/topicOfDayDetails" />
+        <action
+            android:id="@+id/action_homeFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/topicOfDayDetails"
-        android:name="com.example.alldroid.TopicOfDayDetails"
+        android:name="com.example.alldroid.AdisPackage.TopicOfDayDetails"
         android:label="fragment_topic_of_day_details"
         tools:layout="@layout/fragment_topic_of_day_details" />
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.example.alldroid.WebViewFragment"
+        android:name="com.example.alldroid.AdisPackage.WebViewFragment"
         android:label="fragment_web_view"
         tools:layout="@layout/fragment_web_view" />
     <fragment
         android:id="@+id/roadMapFragment"
-        android:name="com.example.alldroid.RoadMapFragment"
+        android:name="com.example.alldroid.MapPackage.RoadMapFragment"
         android:label="fragment_road_map"
         tools:layout="@layout/fragment_road_map" >
         <action
             android:id="@+id/action_roadMapFragment_to_roadMapComponents"
             app:destination="@id/roadMapComponents" />
+        <action
+            android:id="@+id/action_roadMapFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/roadMapComponents"
-        android:name="com.example.alldroid.RoadMapComponents"
+        android:name="com.example.alldroid.MapPackage.RoadMapComponents"
         android:label="fragment_road_map_components"
         tools:layout="@layout/fragment_road_map_components" >
         <action
@@ -44,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/roadMapDetailed"
-        android:name="com.example.alldroid.RoadMapDetailed"
+        android:name="com.example.alldroid.MapPackage.RoadMapDetailed"
         android:label="fragment_road_map_detailed"
         tools:layout="@layout/fragment_road_map_detailed" />
 </navigation>

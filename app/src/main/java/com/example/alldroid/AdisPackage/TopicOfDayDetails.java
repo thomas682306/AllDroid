@@ -1,4 +1,4 @@
-package com.example.alldroid;
+package com.example.alldroid.AdisPackage;
 
 import android.os.Bundle;
 
@@ -20,6 +20,7 @@ import com.example.alldroid.AdisPackage.adapter_recyclerview_topicoftheday;
 import com.example.alldroid.AdisPackage.siteandlink;
 import com.example.alldroid.AdisPackage.topic;
 import com.example.alldroid.QuizPackage.FirebaseRepository;
+import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
