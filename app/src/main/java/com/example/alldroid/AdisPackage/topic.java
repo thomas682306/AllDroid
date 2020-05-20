@@ -1,7 +1,12 @@
 package com.example.alldroid.AdisPackage;
 
-public class topic {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class topic implements Serializable {
     private String Topic,Description;
+
 
     public topic() {
     }

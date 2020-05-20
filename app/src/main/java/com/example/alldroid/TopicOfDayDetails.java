@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alldroid.AdisPackage.AdisFirebaseRepo;
 import com.example.alldroid.AdisPackage.adapter_recyclerview_topicoftheday;
 import com.example.alldroid.AdisPackage.siteandlink;
+import com.example.alldroid.AdisPackage.topic;
 import com.example.alldroid.QuizPackage.FirebaseRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +32,10 @@ public class TopicOfDayDetails extends Fragment {
 
     RecyclerView recyclerView_topicofthedayfragment;
     public List<siteandlink> loaddata=new ArrayList<>();
+    FirebaseRepository mfire;
+    List<topic> topicdataheading=new ArrayList<>();
+    TextView h,d;
+    private ProgressBar pbar;
 
 
 
@@ -53,7 +60,26 @@ public class TopicOfDayDetails extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        pbar=view.findViewById(R.id.pbar_topicdetials);
+        pbar.setVisibility(View.VISIBLE);
+
         loaddata= (ArrayList<siteandlink>) getArguments().getSerializable("links");
+
+        h=view.findViewById(R.id.topicheading_topicofthedaydetails);
+        d=view.findViewById(R.id.topicdesc_topicoftheday);
+
+        mfire=new FirebaseRepository();
+
+        mfire.gettopic.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                     topicdataheading=task.getResult().toObjects(topic.class);
+                     h.setText(topicdataheading.get(0).getTopic());
+                     d.setText(topicdataheading.get(0).getDescription());
+                     pbar.setVisibility(View.INVISIBLE);
+            }
+        });
+
 
 
 

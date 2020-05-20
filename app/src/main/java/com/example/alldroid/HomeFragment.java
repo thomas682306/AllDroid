@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +40,11 @@ public class HomeFragment extends Fragment {
     NavController navController;
     FirebaseRepository mfire;
     private List<topic> sampledata=new ArrayList<>();
+    private List<topic> dt=new ArrayList<>();
     TextView topicoftheday,descoftopicoftheweek;
     public List<siteandlink> siteandlinkdata=new ArrayList<>();
+    Bundle bundle;
+    ProgressBar pbar_home;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -58,6 +62,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home, container, false);
+
         return view;
     }
 
@@ -69,6 +74,8 @@ public class HomeFragment extends Fragment {
         navController = Navigation.findNavController(view);
         topicoftheday=view.findViewById(R.id.topicoftheday_home);
         descoftopicoftheweek=view.findViewById(R.id.desc_topicoftheweek_home);
+        pbar_home=view.findViewById(R.id.probar_homefragment);
+        pbar_home.setVisibility(View.VISIBLE);
 
 
 
@@ -77,9 +84,9 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 sampledata= task.getResult().toObjects(topic.class);
-                Log.d("TAG", sampledata.get(0).getTopic());
                 topicoftheday.setText(sampledata.get(0).getTopic());
                 descoftopicoftheweek.setText(sampledata.get(0).getDescription());
+                pbar_home.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -93,14 +100,17 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         siteandlinkdata=task.getResult().toObjects(siteandlink.class);
-                        Bundle bundle=new Bundle();
+                        bundle=new Bundle();
                         bundle.putSerializable("links", (Serializable) siteandlinkdata);
                         navController.navigate(R.id.action_homeFragment_to_topicOfDayDetails, bundle);
-
                     }
                 });
             }
         });
+
+
+
+
 
         start_quiz_btn.setOnClickListener(new View.OnClickListener() {
             @Override

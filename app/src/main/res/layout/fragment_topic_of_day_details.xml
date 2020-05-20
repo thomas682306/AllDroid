@@ -1,72 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TopicOfDayDetails">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             >
+
             <androidx.cardview.widget.CardView
+                android:layout_marginTop="11dp"
+                android:id="@+id/cd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="10dp"
-                >
+                app:cardCornerRadius="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/cardView3"
+                app:layout_constraintTop_toTopOf="parent">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/topicheading_topicofthedaydetails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Heading RecylerView"
-                        android:textStyle="bold"
-                        android:textSize="28dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="5dp"/>
+                        android:layout_marginTop="8dp"
+                        android:text="Heading"
+                        android:textSize="28dp"
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:id="@+id/topicdesc_topicoftheday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="The detailed description on recycler view : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-                        android:textSize="18dp"
+                        android:layout_marginHorizontal="6dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginHorizontal="6dp"/>
+                        android:textSize="18dp" />
+                    <ProgressBar
+                        android:id="@+id/pbar_topicdetials"
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
+                android:layout_marginTop="14dp"
+                android:id="@+id/cardView3"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="500dp"
+                android:layout_marginHorizontal="10dp"
                 app:cardCornerRadius="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginHorizontal="10dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cd">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview_topicofthedaydescriptionfragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="14dp"
-                        tools:listitem="@layout/listitem_recyclerviewfromtopicofthedaydescriptionfragment"
-                        />
+                        tools:listitem="@layout/listitem_recyclerviewfromtopicofthedaydescriptionfragment" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </ScrollView>
-</FrameLayout>
+</ScrollView>
