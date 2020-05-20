@@ -7,6 +7,14 @@
     android:fillViewport="true"
     tools:context=".MapPackage.RoadMapComponents">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/components_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

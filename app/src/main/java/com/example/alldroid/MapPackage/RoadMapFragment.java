@@ -66,6 +66,7 @@ public class RoadMapFragment extends Fragment implements RoadMapAdapter1.myOncli
 
         else{
             //travel to components with firebase
+            navController.navigate(R.id.action_roadMapFragment_to_roadMapComponents);
 
         }
     }
