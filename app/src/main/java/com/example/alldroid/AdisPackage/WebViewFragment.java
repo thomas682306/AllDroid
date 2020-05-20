@@ -1,6 +1,7 @@
 package com.example.alldroid.AdisPackage;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -14,12 +15,14 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import com.example.alldroid.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class WebViewFragment extends Fragment {
     WebView webView;
+    ProgressBar progressBar;
     public WebViewFragment() {
         // Required empty public constructor
     }
@@ -44,7 +47,21 @@ public class WebViewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String url = getArguments().getString("url");
         webView = view.findViewById(R.id.webView);
-        webView.setWebViewClient(new WebViewClient());
+        progressBar=view.findViewById(R.id.progress_circular);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
+        webView.setWebViewClient(new WebViewClient(){
+            @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                webView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override public void onPageCommitVisible(WebView view, String url) {
+                super.onPageCommitVisible(view, url);
+                progressBar.setVisibility(ProgressBar.GONE);
+                webView.setVisibility(View.VISIBLE);
+            }
+        });
         webView.loadUrl(url);
 
         WebSettings webSettings = webView.getSettings();
