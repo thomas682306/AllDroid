@@ -1,4 +1,4 @@
-package com.example.alldroid;
+package com.example.alldroid.AdisPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import com.example.alldroid.AdisPackage.siteandlink;
 import com.example.alldroid.AdisPackage.topic;
 import com.example.alldroid.QuizPackage.FirebaseRepository;
 import com.example.alldroid.QuizPackage.QuizActivity;
+import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
