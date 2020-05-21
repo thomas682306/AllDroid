@@ -8,6 +8,7 @@ public class ArrayListClass {
     private static ArrayList<MapComponentModel> professionalArray= new ArrayList<>();
 
     public static ArrayList<MapComponentModel> getintermediateArray() {
+
         intermediateArray.add(new MapComponentModel("Picasso/Glide", R.drawable.ic_galler_picasso));
         intermediateArray.add(new MapComponentModel("Firebase", R.drawable.ic_logo_built_black));
         intermediateArray.add(new MapComponentModel("Architecture", R.drawable.ic_engineer));
@@ -18,6 +19,7 @@ public class ArrayListClass {
     }
 
     public static ArrayList<MapComponentModel> getbeginnerArray(){
+
         beginnerArray.add(new MapComponentModel("Java/Kotlin",R.drawable.ic_software_engineers_vector));
         beginnerArray.add(new MapComponentModel("Layout Basics",R.drawable.ic_layoutbasics));
         beginnerArray.add(new MapComponentModel("Basic Views",R.drawable.ic_basicviews));
@@ -27,6 +29,7 @@ public class ArrayListClass {
         return beginnerArray;
     }
     public static ArrayList<MapComponentModel> getProfessionalArray(){
+
         professionalArray.add(new MapComponentModel("Complex Database Desgn",R.drawable.ic_man_data));
         professionalArray.add(new MapComponentModel("Concurrency",R.drawable.ic_concurrency));
         professionalArray.add(new MapComponentModel("Unit/UI Testing",R.drawable.ic_testing));

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class adapter_recyclerview_topicoftheday extends RecyclerView.Adapter<adapter_recyclerview_topicoftheday.topicoftheday_viewholder>  {
-
-
     List<siteandlink> mdata;
     Context context;
 
