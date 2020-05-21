@@ -14,5 +14,9 @@ public class FirebaseRepository {
 
     public Task<QuerySnapshot> getlinks= db.collection("TopicOfTheWeek").
             document("OcPKOAo6dGyx0KAa9Pyu").collection("Links").get();
+
+    public Task<QuerySnapshot> getimages= db.collection("images")
+            .get();
+
 }
 
