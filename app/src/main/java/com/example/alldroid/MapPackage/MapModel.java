@@ -4,10 +4,19 @@ public class MapModel {
     private String status_text;
     private int status_drawable;
     private boolean isWebView;
+    private int item_number;
     private String url;
 
     public boolean isWebView() {
         return isWebView;
+    }
+
+    public int getItem_number() {
+        return item_number;
+    }
+
+    public void setItem_number(int item_number) {
+        this.item_number = item_number;
     }
 
     public void setWebView(boolean webView) {
@@ -25,10 +34,11 @@ public class MapModel {
     public MapModel() {
     }
 
-    public MapModel(String status_text, int status_drawable, boolean isWebView, String url) {
+    public MapModel(String status_text, int status_drawable, boolean isWebView, int item_number, String url) {
         this.status_text = status_text;
         this.status_drawable = status_drawable;
         this.isWebView = isWebView;
+        this.item_number = item_number;
         this.url = url;
     }
 

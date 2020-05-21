@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.alldroid.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class RoadMapFragment extends Fragment implements RoadMapAdapter1.myOnclickListener {
@@ -65,20 +66,32 @@ public class RoadMapFragment extends Fragment implements RoadMapAdapter1.myOncli
         }
 
         else{
-            //travel to components with firebase
-            navController.navigate(R.id.action_roadMapFragment_to_roadMapComponents);
+            Bundle bundle = new Bundle();
+
+            if(mModelArray.get(position).getItem_number()==0){
+                bundle.putSerializable("array", ArrayListClass.getbeginnerArray());
+            }
+            else if(mModelArray.get(position).getItem_number()==1){
+                bundle.putSerializable("array", ArrayListClass.getintermediateArray());
+            }
+            else if(mModelArray.get(position).getItem_number()==2){
+                bundle.putSerializable("array", ArrayListClass.getProfessionalArray());
+            }
+
+            navController.navigate(R.id.action_roadMapFragment_to_roadMapComponents,bundle);
 
         }
     }
 
     void addToList(ArrayList<MapModel> mArrayList){
-        mArrayList.add(new MapModel("Newbie to Beginner",R.drawable.ic_newbie,false, "Beginner"));
-        mArrayList.add(new MapModel("Beginner to Intermediate",R.drawable.ic_progress,false, "Intermediate"));
-        mArrayList.add(new MapModel("Intermediate to Professional",R.drawable.ic_pro,false, "Professional"));
+        //String status_text, int status_drawable, boolean isWebView, int item_number, String url
+        mArrayList.add(new MapModel("Newbie to Beginner",R.drawable.ic_newbie,false,0,"Beginner"));
+        mArrayList.add(new MapModel("Beginner to Intermediate",R.drawable.ic_progress,false, 1,"Intermediate"));
+        mArrayList.add(new MapModel("Intermediate to Professional",R.drawable.ic_pro,false, 2,"Professional"));
 
-        mArrayList.add(new MapModel("Master Git",R.drawable.ic_github_logo,true, "https://medium.com/better-programming/how-to-use-git-in-android-studio-part-1-a8a554006aad"));
-        mArrayList.add(new MapModel("Learn about Google's Material Guidlines",R.drawable.ic_material,true, "https://material.io/"));
-        mArrayList.add(new MapModel("Learn a backend Framework",R.drawable.ic_backend,true, "https://medium.com/@Kaperskyguru/top-5-backend-frameworks-a14a390151d2"));
+        mArrayList.add(new MapModel("Master Git",R.drawable.ic_github_logo,true, -1,"https://medium.com/better-programming/how-to-use-git-in-android-studio-part-1-a8a554006aad"));
+        mArrayList.add(new MapModel("Learn about Google's Material Guidlines",R.drawable.ic_material,true, -1,"https://material.io/"));
+        mArrayList.add(new MapModel("Learn a backend Framework",R.drawable.ic_backend,true, -1,"https://medium.com/@Kaperskyguru/top-5-backend-frameworks-a14a390151d2"));
 
 
 

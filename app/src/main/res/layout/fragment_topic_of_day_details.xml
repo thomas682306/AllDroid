@@ -8,17 +8,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            android:orientation="vertical">
+
 
             <androidx.cardview.widget.CardView
-                android:layout_marginTop="11dp"
                 android:id="@+id/cd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="11dp"
                 app:cardCornerRadius="15dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/cardView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
@@ -44,12 +46,13 @@
                         android:layout_marginHorizontal="6dp"
                         android:layout_marginTop="10dp"
                         android:textSize="18dp" />
+
                     <ProgressBar
                         android:id="@+id/pbar_topicdetials"
                         android:layout_width="33dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

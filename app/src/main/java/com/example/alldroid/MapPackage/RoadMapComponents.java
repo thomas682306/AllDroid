@@ -33,9 +33,6 @@ public class RoadMapComponents extends Fragment implements RoadMapAdapter2.myOnc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mArrayList=ArrayListClass.getintermediateArray();
-        roadMapAdapter2 = new RoadMapAdapter2(mArrayList,getActivity(),this);
-        roadMapAdapter2.notifyDataSetChanged();
 
     }
 
@@ -49,9 +46,19 @@ public class RoadMapComponents extends Fragment implements RoadMapAdapter2.myOnc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView=view.findViewById(R.id.components_recyclerview);
+        mArrayList= (ArrayList<MapComponentModel>) getArguments().getSerializable("array");
+        roadMapAdapter2 = new RoadMapAdapter2(mArrayList,getActivity(),this);
         recyclerView.setAdapter(roadMapAdapter2);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        roadMapAdapter2.notifyDataSetChanged();
 
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mArrayList.clear();
     }
 
     @Override

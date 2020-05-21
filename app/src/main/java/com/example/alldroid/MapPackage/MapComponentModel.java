@@ -1,6 +1,8 @@
 package com.example.alldroid.MapPackage;
 
-public class MapComponentModel {
+import java.io.Serializable;
+
+public class MapComponentModel implements Serializable {
     private String status;
     private int resourceId;
 
