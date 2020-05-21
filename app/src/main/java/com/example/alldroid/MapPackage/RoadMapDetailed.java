@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.alldroid.R;
 
 public class RoadMapDetailed extends Fragment {
+
     RecyclerView recyclerView;
     TextView map_detail_heading;
     TextView map_detail_description;
