@@ -7,18 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".AdisPackage.HomeFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_homefragment"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        android:id="@+id/recyclerview_homefragment"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005"
+        tools:listitem="@layout/listitem_homerecyclerview" />
 
-        <androidx.cardview.widget.CardView
+    <androidx.cardview.widget.CardView
             android:id="@+id/cardView_homefragment"
             android:layout_width="370dp"
             android:layout_height="wrap_content"
