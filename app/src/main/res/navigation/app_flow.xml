@@ -11,18 +11,29 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
+
             android:id="@+id/action_homeFragment_to_topicOfDayDetails"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/topicOfDayDetails" />
         <action
             android:id="@+id/action_homeFragment_to_webViewFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/webViewFragment"
+
             app:destination="@id/webViewFragment" />
         <action
             android:id="@+id/action_homeFragment_to_roadMapFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/roadMapFragment"
+
             app:destination="@id/roadMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/topicOfDayDetails"
         android:name="com.example.alldroid.AdisPackage.TopicOfDayDetails"
+        app:popUpToInclusive="true"
+
         android:label="fragment_topic_of_day_details"
         tools:layout="@layout/fragment_topic_of_day_details" />
     <fragment

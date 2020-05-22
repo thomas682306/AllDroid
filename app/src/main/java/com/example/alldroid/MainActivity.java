@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+       setContentView(R.layout.activity_main);
        bottomAppBar=findViewById(R.id.bottom_navigation);
        navController= Navigation.findNavController(MainActivity.this,R.id.nav_host_fragment_home);
 
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
                        navController.navigate(R.id.roadMapFragment);
                        break;
 
-
                    case R.id.android_nav:
                        Bundle bundle = new Bundle();
                        bundle.putString("url","https://developer.android.com/");
@@ -52,5 +52,14 @@ public class MainActivity extends AppCompatActivity {
                return true;
            }
        });
+
+
+
+//
+
+//        NavHostFragment navHostFragment =       (NavHostFragment)getSupportFragmentManager()
+//                .findFragmentById(R.id.nav_host_fragment_home);
+//        NavigationUI.setupWithNavController(bottomAppBar,
+//                navHostFragment.getNavController());
     }
 }

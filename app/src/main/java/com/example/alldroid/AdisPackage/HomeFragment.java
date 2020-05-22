@@ -2,6 +2,7 @@ package com.example.alldroid.AdisPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +26,6 @@ import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.shape.CornerTreatment;
-import com.google.android.material.shape.ShapeAppearanceModel;
-import com.google.android.material.shape.ShapePath;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
@@ -48,6 +46,7 @@ public class HomeFragment extends Fragment {
     ProgressBar pbar_home;
     ViewPager2 vp2_home;
     homerecview_adapter madapt;
+    private Handler sliderhandler= new Handler();
 
     // Creating List of ImageUploadInfo class.
     List<Imageinfo> list = new ArrayList<>();
@@ -78,14 +77,10 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         start_quiz_btn=view.findViewById(R.id.start_quiz_button);
         topicofthedaycardview=view.findViewById(R.id.cardView_homefragment);
-
         navController = Navigation.findNavController(view);
         topicoftheday=view.findViewById(R.id.topicoftheday_home);
         descoftopicoftheweek=view.findViewById(R.id.desc_topicoftheweek_home);
         pbar_home=view.findViewById(R.id.probar_homefragment);
-        pbar_home.setVisibility(View.VISIBLE);
-
-
         vp2_home=view.findViewById(R.id.recyclerview_homefragment);
 
 
@@ -93,9 +88,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 list= task.getResult().toObjects(Imageinfo.class);
-                madapt= new homerecview_adapter(getContext(),list);
+                madapt= new homerecview_adapter(getContext(),list,vp2_home);
                 vp2_home.setAdapter(madapt);
-//                vp2_home.setPageTransformer(new ZoomOutPageTransformer());
                 vp2_home.setClipToPadding(false);
                 vp2_home.setClipChildren(false);
                 vp2_home.setOffscreenPageLimit(3);
@@ -115,6 +109,14 @@ public class HomeFragment extends Fragment {
 
 
 
+        vp2_home.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderhandler.removeCallbacks(sliderrunnable);
+                sliderhandler.postDelayed(sliderrunnable, 4000);
+            }
+        });
 
 
 
@@ -161,4 +163,10 @@ public class HomeFragment extends Fragment {
         });
 
     }
+    private Runnable sliderrunnable= new Runnable() {
+        @Override
+        public void run() {
+            vp2_home.setCurrentItem(vp2_home.getCurrentItem() +1);
+        }
+    };
 }
