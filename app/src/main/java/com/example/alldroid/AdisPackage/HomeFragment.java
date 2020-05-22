@@ -19,6 +19,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,6 +68,7 @@ public class HomeFragment extends Fragment {
     ProgressBar pbar_home;
     ViewPager2 vp2_home;
     homerecview_adapter madapt;
+    private Handler sliderhandler= new Handler();
 
     // Creating List of ImageUploadInfo class.
     List<Imageinfo> list = new ArrayList<>();
@@ -111,9 +113,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 list= task.getResult().toObjects(Imageinfo.class);
-                madapt= new homerecview_adapter(getContext(),list);
+                madapt= new homerecview_adapter(getContext(),list,vp2_home);
                 vp2_home.setAdapter(madapt);
-//                vp2_home.setPageTransformer(new ZoomOutPageTransformer());
                 vp2_home.setClipToPadding(false);
                 vp2_home.setClipChildren(false);
                 vp2_home.setOffscreenPageLimit(3);
@@ -133,6 +134,14 @@ public class HomeFragment extends Fragment {
 
 
 
+        vp2_home.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                sliderhandler.removeCallbacks(sliderrunnable);
+                sliderhandler.postDelayed(sliderrunnable, 8000);
+            }
+        });
 
 
 
@@ -179,4 +188,10 @@ public class HomeFragment extends Fragment {
         });
 
     }
+    private Runnable sliderrunnable= new Runnable() {
+        @Override
+        public void run() {
+            vp2_home.setCurrentItem(vp2_home.getCurrentItem() +1);
+        }
+    };
 }

@@ -8,8 +8,9 @@
     tools:context=".AdisPackage.HomeFragment">
 
     <androidx.viewpager2.widget.ViewPager2
-        android:paddingStart="60dp"
-        android:paddingEnd="60dp"
+        android:elevation="1.5dp"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
         android:id="@+id/recyclerview_homefragment"
         android:layout_width="match_parent"
         android:layout_height="184dp"
