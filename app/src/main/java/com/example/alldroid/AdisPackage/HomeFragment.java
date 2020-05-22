@@ -1,11 +1,12 @@
 package com.example.alldroid.AdisPackage;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ImageDecoder;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,41 +14,21 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.alldroid.AdisPackage.AdisFirebaseRepo;
-import com.example.alldroid.AdisPackage.siteandlink;
-import com.example.alldroid.AdisPackage.topic;
 import com.example.alldroid.QuizPackage.FirebaseRepository;
 import com.example.alldroid.QuizPackage.QuizActivity;
 import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.shape.CornerTreatment;
+import com.google.android.material.shape.ShapeAppearanceModel;
+import com.google.android.material.shape.ShapePath;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -97,6 +78,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         start_quiz_btn=view.findViewById(R.id.start_quiz_button);
         topicofthedaycardview=view.findViewById(R.id.cardView_homefragment);
+
         navController = Navigation.findNavController(view);
         topicoftheday=view.findViewById(R.id.topicoftheday_home);
         descoftopicoftheweek=view.findViewById(R.id.desc_topicoftheweek_home);

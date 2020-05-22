@@ -45,7 +45,9 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         String url = getArguments().getString("url");
+
         webView = view.findViewById(R.id.webView);
         progressBar=view.findViewById(R.id.progress_circular);
         progressBar.setVisibility(ProgressBar.VISIBLE);
