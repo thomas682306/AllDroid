@@ -8,7 +8,7 @@ import android.os.Handler;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static int Splash_time=6000;
+    private static int Splash_time=2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                    Intent homeintent=new Intent(SplashScreenActivity.this,MainActivity.class);
+                    Intent homeintent=new Intent(SplashScreenActivity.this,OnBoardingActivity.class);
                     startActivity(homeintent);
                     finish();
             }

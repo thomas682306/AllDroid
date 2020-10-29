@@ -13,12 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.alldroid.AdisPackage.AdisFirebaseRepo;
-import com.example.alldroid.AdisPackage.adapter_recyclerview_topicoftheday;
-import com.example.alldroid.AdisPackage.siteandlink;
-import com.example.alldroid.AdisPackage.topic;
 import com.example.alldroid.QuizPackage.FirebaseRepository;
 import com.example.alldroid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
