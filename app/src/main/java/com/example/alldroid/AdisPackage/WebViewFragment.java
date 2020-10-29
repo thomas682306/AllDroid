@@ -35,6 +35,9 @@ public class WebViewFragment extends Fragment {
 
     }
 
+
+    // added a comment
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
